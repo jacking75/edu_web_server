@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>AjaxƒeƒXƒg</title>
+<script type="text/javascript">
+function getAddress() {
+  var postalCodeInput = document.getElementById("postalCode");
+  var postalCode = postalCodeInput.value;
+  if (postalCode == "") {
+    alert("—X•Ö”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢");
+    return;
+  }
+  var xhr = new XMLHttpRequest();
+  var url = "http://localhost:8001/ajaxtest/GetAddress?postalCode="
+            + postalCode;
+  xhr.open("GET", url, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status === 200) {
+      var addressInput = document.getElementById("address");
+      addressInput.value = xhr.responseText;
+    }
+  };
+  xhr.send();
+}
+</script>
+</head>
+<body>
+<table>
+<tr>
+  <td>—X•Ö”Ô†</td>
+  <td><input id="postalCode" type="text" size="10"/>
+    <button type="button" onclick="getAddress();">ZŠ©“®“ü—Í</button>
+  </td>
+</tr>
+<tr>
+  <td>ZŠ</td>
+  <td><input id="address" type="text" size="40"/></td>
+</tr>
+</table>
+</body>
+</html>
